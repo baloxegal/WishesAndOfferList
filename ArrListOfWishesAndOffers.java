@@ -22,6 +22,8 @@ public class ArrListOfWishesAndOffers {
 //				"Pepper,5",
 //				"Sugar,1");
 		
+		//Вариант с Arrays.asList в качестве аргумента работает
+		
 		ArrayList<String> listOfWishes = new ArrayList<String> (Arrays.asList( 
 				"Spaghetti,2", 
 				"Pepper,5",
@@ -32,7 +34,7 @@ public class ArrListOfWishesAndOffers {
 			    "Sugar,5.00",
 			    "Water,2.50"));
 		
-		//Выделяем Spaghetti в виде String отдельно, а двойку в виде Integer отдельно
+		//Выделяем Spaghetti в виде String отдельно, и двойку в виде Integer отдельно
 		
 		String newSpaghetti = listOfWishes.get(0).substring(0, listOfWishes.get(0).indexOf(','));
 		Integer newQuantitySpaghetti = Integer.parseInt(listOfWishes.get(0).substring(listOfWishes.get(0).indexOf(',') + 1));
@@ -42,17 +44,27 @@ public class ArrListOfWishesAndOffers {
 		ArrayList<String> listOfPurchases = new ArrayList<String>();
 		
 		for(String w : listOfWishes) {
-			String newO = "";
-			listOfOffers.forEach(o -> {if(o.substring(0, o.indexOf(',')).compareTo(w.substring(0, w.indexOf(','))) < 0)
-				newO.concat(w);
-			newO.concat("=");
-			newO.concat(o.substring(o.indexOf(',') + 1));
-			listOfPurchases.add(newO);
-			listOfPurchases.forEach(p -> System.out.println(p));
-			System.out.println(newO);
-			});
+			for(String o : listOfOffers) {
+				if(o.substring(0, o.indexOf(',')).compareTo(w.substring(0, w.indexOf(','))) == 0) {
+					String newStringForPurchases = "";
+					newStringForPurchases = newStringForPurchases.concat(w + "=");
+							
+					Integer concatW = Integer.parseInt(w.substring(w.indexOf(',') + 1));
+					Double concatO = Double.parseDouble(o.substring(o.indexOf(',') + 1));
+					Double sumConcat = concatW * concatO;
+			
+					newStringForPurchases = newStringForPurchases.concat(sumConcat.toString());
+			
+					listOfPurchases.add(newStringForPurchases);
+				}
+			}
 		}
-		// 0 -> "Spaghetti,2=20.00"
-		// 1 -> "Sugar,1=5.00"
+		
+		System.out.println("List Of Wishes");
+		listOfWishes.forEach(w->System.out.println(w));
+		System.out.println("List Of Offers");
+		listOfOffers.forEach(o->System.out.println(o));
+		System.out.println("List Of Purchases");
+		listOfPurchases.forEach(p -> System.out.println(listOfPurchases.indexOf(p) + " -> \""+ p + "\""));
 	}
 }
