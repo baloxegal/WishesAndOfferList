@@ -15,7 +15,7 @@ public class ArrListOfWishesAndOffers {
 //		    "Sugar,1");
 
 		
-		//Вариант с кастом не работает - Exception
+		//Вариант с кастом не работает - Exception - как быть?
 		
 //		ArrayList<String> listOfWishes = (ArrayList<String>)Arrays.asList(  
 //				"Spaghetti,2", 
