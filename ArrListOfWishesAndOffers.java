@@ -68,3 +68,4 @@ public class ArrListOfWishesAndOffers {
 		listOfPurchases.forEach(p -> System.out.println(listOfPurchases.indexOf(p) + " -> \""+ p + "\""));
 	}
 }
+///RESOURS FOR GIT
